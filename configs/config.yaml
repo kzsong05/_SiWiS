@@ -1,0 +1,63 @@
+# wandb
+wandb_enable: True
+project_name: "wifi"
+display_name: "lr1e_3-b16-v25-r1024"
+
+# dataset
+# - file
+train_file: "./data/train_data.jsonl"
+test_file: "./data/test_data.jsonl"
+# - conf
+num_antennas: 4
+video_frames: 25
+radio_frames: 1024
+norm_num_groups: 32
+# - size
+image_size: [640, 480]
+heatmap_size: [64, 48]
+heatmap_sigma: 2
+num_keypoint: 13
+
+# model
+# - mask loss
+bce_loss_weight: 0.5
+dice_loss_weight: 0.5
+# - keypoint loss
+mse_loss_weight: 1
+within_loss_weight: 0.001
+across_loss_weight: 0.001
+
+# train
+# - basic
+seed: 42
+log_file: ~
+# - dataloader
+workers_per_gpu: 0
+train_batch_size: 8
+eval_batch_size: 8
+test_batch_size: 8
+# - train
+do_train: True
+num_train_epochs: 100
+learning_rate: 0.001
+lr_scheduler_gamma: 1.0
+max_grad_norm: 1.0
+# - eval
+do_eval_visual: True
+eval_visual_sample: 10
+# - test
+do_test: True
+do_test_visual: True
+test_visual_sample: 50
+# - visual
+visual_save_path: ~
+pred_mask_threshold: 0.0
+draw_pred_mask_visual: True
+draw_gt_mask_visual: True
+draw_pred_keypoint_visual: True
+draw_gt_keypoint_visual: True
+draw_on_black_canvas: False
+# - save
+model_save_path: ~
+save_epochs: 1
+model_load_path: ~          # ["path/to/checkpoint", ~]
